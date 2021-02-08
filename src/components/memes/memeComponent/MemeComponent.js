@@ -30,6 +30,17 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
         }
     }
 
+    let deleteMemeHandler = async () => {
+        const response = await fetch(`http://localhost:8081/memes/${id}`,{
+            method: "DELETE"
+        });
+
+        const res = await response.json();
+        if(res.success){
+            fetchMemesFunc();   
+        }
+    }
+
     let editForm = showForm? <React.Fragment>
         <form onSubmit={editMemeHandler}>
             <input type="text" value={editedCaption} onChange={(e) => setEditedCaption(e.target.value)} />
@@ -42,7 +53,8 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
             <p className="meme-name">{name}</p>
             <img src={url} alt={caption} />
             <div>
-                <button onClick={() => setShowForm(true)}>Edit</button>
+                <button onClick={() => setShowForm(true)}>Edit</button> 
+                <button onClick={deleteMemeHandler}>Delete</button>
             </div>
             <p className="meme-caption">{caption}</p>
             <hr style={{fontWeight:500}} />

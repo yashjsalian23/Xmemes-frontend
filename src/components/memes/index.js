@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import Header from '../header/Header';
 import MemeComponent from './memeComponent/MemeComponent';
 
 import './index.css';
@@ -22,19 +23,22 @@ const index = () => {
     }
 
     return (
-        <div className="memeList">
-            <div>
-                {
-                    memeArray.map(meme => <MemeComponent
-                        key={meme.id} 
-                        id={meme.id} 
-                        name={meme.name} 
-                        url={meme.url} 
-                        caption={meme.caption}
-                        fetchMemesFunc={fetchMemes} />)
-                }
+        <React.Fragment>
+            <Header />
+            <div className="memeList">
+                <div>
+                    {
+                        memeArray.map(meme => <MemeComponent
+                            key={meme.id} 
+                            id={meme.id} 
+                            name={meme.name} 
+                            url={meme.url} 
+                            caption={meme.caption}
+                            fetchMemesFunc={fetchMemes} />)
+                    }
+                </div>
             </div>
-        </div>
+        </React.Fragment>
     );
 };
 
