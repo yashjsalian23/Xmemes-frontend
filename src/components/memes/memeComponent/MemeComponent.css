@@ -1,0 +1,23 @@
+.meme {
+  margin-top: 35px;
+}
+
+.meme-name {
+  text-align: left;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.meme-caption {
+  text-align: left;
+  font-size: 22px;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin-top: 12px;
+}
+
+.meme img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}

@@ -18,10 +18,12 @@ const index = () => {
     }, []);
 
     return (
-        <div>
-            {
-                memeArray.map(meme => <MemeComponent key={meme.url} name={meme.name} url={meme.url} caption={meme.caption} />)
-            }
+        <div className="memeList">
+            <div>
+                {
+                    memeArray.map(meme => <MemeComponent key={meme.url} name={meme.name} url={meme.url} caption={meme.caption} />)
+                }
+            </div>
         </div>
     );
 };
