@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import Button from '../../ui/button/Button';
+
 import './MemeComponent.css';
 
 const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
@@ -44,7 +46,7 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
     let editForm = showForm? <React.Fragment>
         <form onSubmit={editMemeHandler}>
             <input type="text" value={editedCaption} onChange={(e) => setEditedCaption(e.target.value)} />
-            <button type="submit">Submit</button>
+            <Button type="submit">Submit</Button>
         </form>
     </React.Fragment>:null
 
@@ -53,8 +55,8 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
             <p className="meme-name">{name}</p>
             <img src={url} alt={caption} />
             <div>
-                <button onClick={() => setShowForm(true)}>Edit</button> 
-                <button onClick={deleteMemeHandler}>Delete</button>
+                <Button onClick={() => setShowForm(true)} color="green">Edit</Button> 
+                <Button onClick={deleteMemeHandler} color="red">Delete</Button>
             </div>
             <p className="meme-caption">{caption}</p>
             <hr style={{fontWeight:500}} />
