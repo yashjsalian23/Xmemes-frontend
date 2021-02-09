@@ -6,6 +6,13 @@
   color: #ffffff;
 }
 
+.small {
+  width: 100px;
+  height: 30px;
+  font-size: 10px;
+  line-height: 15px;
+}
+
 .primary {
   background: #3a1ba3;
   border: 2px solid #3a1ba3;
@@ -34,4 +41,20 @@
 .red:hover {
   color: #e31717;
   background: #ffffff;
+}
+
+@media (max-width: 480px) {
+  .btn {
+    width: 100px;
+    font-size: 12px;
+    height: 35px;
+    border-radius: 15px;
+  }
+
+  .small {
+    padding: 3px 10px;
+    width: 75px;
+    height: 25px;
+    font-size: 10px;
+  }
 }
