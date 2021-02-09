@@ -12,11 +12,10 @@ const Header = ({fetchMemesFunc}) => {
     let [ name, setName ] = useState();
     let [ url, setUrl ] = useState();
     let [ message, setMessage ] = useState();
-    let [ showMessage, setShowMessage ] = useState(false);
+    let [ showForm, setShowForm ] = useState(true);
 
     let newMemeHandler = async (event) => {
         event.preventDefault();
-        setShowMessage(false);
         let body = {
             url,
             name,
@@ -32,22 +31,24 @@ const Header = ({fetchMemesFunc}) => {
         });
 
         let res = await response.json();
-        setShowMessage(true);
         if(res.id){
+            setShowForm(false);
             setMessage('Meme Posted Successfully!');
             fetchMemesFunc();
             await setTimeout(() => {
                 setShowModal(false);
+                setShowForm(true);
             }, 3500);
         } else {
             setMessage('Unable to post Meme');
             await setTimeout(() => {
                 setShowModal(false);
+                setShowForm(true);
             }, 3500);
         }
     }
 
-    let form = <React.Fragment>
+    let form = showForm ?  (<React.Fragment>
         <form onSubmit={newMemeHandler}>
             <input type="text"
             required
@@ -70,10 +71,10 @@ const Header = ({fetchMemesFunc}) => {
             <Button type="submit">
                 Submit
             </Button>
-            <p>{showMessage && message}</p>
         </form>
+        </React.Fragment>) : <p>{message}</p>
         
-    </React.Fragment>
+    
     console.log(message)
     return (
         <div>
