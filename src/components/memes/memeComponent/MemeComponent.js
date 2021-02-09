@@ -54,13 +54,13 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
         <div className="meme">
             <p className="meme-name">{name}</p>
             <img src={url} alt={caption} />
-            <div>
-                <Button onClick={() => setShowForm(true)} color="green" size="small">Edit</Button> 
-                <Button onClick={deleteMemeHandler} color="red" size="small">Delete</Button>
+            <div className="meme-btn">
+                <Button clicked={() => setShowForm(true)} color="green" size="small">Edit</Button> 
+                <Button clicked={deleteMemeHandler} color="red" size="small">Delete</Button>
             </div>
             <p className="meme-caption">{caption}</p>
             <hr style={{fontWeight:500}} />
-            { editForm}
+            {/* { editForm} */}
         </div>
     );
 };

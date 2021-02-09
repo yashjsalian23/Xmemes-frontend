@@ -21,3 +21,21 @@
   height: auto;
   object-fit: contain;
 }
+
+.meme-btn {
+  margin-top: 10px;
+}
+
+.meme-btn Button {
+  margin-right: 5px;
+}
+
+@media (max-width: 480px) {
+  .meme-name {
+    font-size: 18px;
+  }
+
+  .meme-caption {
+    font-size: 14px;
+  }
+}

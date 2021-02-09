@@ -2,9 +2,9 @@ import React from 'react';
 
 import './Button.css';
 
-const Button = ({children, color="primary", size}) => {
+const Button = ({children, color="primary", size, clicked}) => {
     return (
-        <button className={`btn ${color} ${size}`} >
+        <button className={`btn ${color} ${size}`} onClick={clicked} >
             {children}
         </button>
     );
