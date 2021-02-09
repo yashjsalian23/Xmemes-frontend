@@ -24,7 +24,7 @@ const index = () => {
 
     return (
         <React.Fragment>
-            <Header />
+            <Header fetchMemesFunc={fetchMemes} />
             <div className="memeList">
                 <div>
                     {
