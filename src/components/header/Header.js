@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Button from '../ui/button/Button';
 import Modal from '../ui/modal/Modal';
+import Loader from '../ui/loader/Loader';
 
 import './Header.css';
 
@@ -13,8 +14,10 @@ const Header = ({fetchMemesFunc}) => {
     let [ url, setUrl ] = useState();
     let [ message, setMessage ] = useState();
     let [ showForm, setShowForm ] = useState(true);
+    let [ showLoader, setShowLoader ] = useState(false);
 
     let newMemeHandler = async (event) => {
+        setShowLoader(true);
         event.preventDefault();
         let body = {
             url,
@@ -31,6 +34,7 @@ const Header = ({fetchMemesFunc}) => {
         });
 
         let res = await response.json();
+        setShowLoader(false);
         if(res.id){
             setShowForm(false);
             setMessage('Meme Posted Successfully!');
@@ -47,6 +51,8 @@ const Header = ({fetchMemesFunc}) => {
             }, 3500);
         }
     }
+
+    let btnContent = showLoader ? <Loader /> : 'Submit';
 
     let form = showForm ?  (<React.Fragment>
         <form onSubmit={newMemeHandler}>
@@ -69,7 +75,7 @@ const Header = ({fetchMemesFunc}) => {
             placeholder="Image URL"/> <br/>
 
             <Button type="submit">
-                Submit
+                {btnContent}
             </Button>
         </form>
         </React.Fragment>) : <p>{message}</p>

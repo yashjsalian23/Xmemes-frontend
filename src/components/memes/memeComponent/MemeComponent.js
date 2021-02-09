@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Button from '../../ui/button/Button';
 import Modal from '../../ui/modal/Modal';
+import Loader from '../../ui/loader/Loader';
 
 import './MemeComponent.css';
 
@@ -13,10 +14,11 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
     let [ showModal, setShowModal ] = useState(false);
     let [ showForm, setShowForm ] = useState(true);
     let [ message, setMessage ] = useState();
-
+    let [ showLoader, setShowLoader ] = useState(false);
 
     let editMemeHandler = async (event) => {
         event.preventDefault();
+        setShowLoader(true);
         let body ={
             url:editedUrl,
             caption:editedCaption,
@@ -31,6 +33,7 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
         })
 
         const res = await response.json();
+        setShowLoader(false);
         if(res.success){
             setShowForm(false);
             setMessage('Meme Edited Successfully!');
@@ -59,6 +62,9 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
         }
     }
 
+    let btnContent = showLoader ? <Loader /> : 'Submit';
+
+
     let editForm = showForm ? (<React.Fragment>
         <form onSubmit={editMemeHandler}>
             <input type="text"
@@ -80,7 +86,7 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
             placeholder="Image URL"/> <br/>
 
             <Button type="submit">
-                Submit
+                {btnContent}
             </Button>
         </form>
     </React.Fragment>) : <p>{message}</p>
