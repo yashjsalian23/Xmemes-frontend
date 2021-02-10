@@ -42,14 +42,17 @@ const Header = ({fetchMemesFunc}) => {
             await setTimeout(() => {
                 setShowModal(false);
                 setShowForm(true);
-            }, 3500);
+            }, 2500);
         } else {
             setMessage('Unable to post Meme');
             await setTimeout(() => {
                 setShowModal(false);
                 setShowForm(true);
-            }, 3500);
+            }, 2500);
         }
+        setCaption('');
+        setName('');
+        setUrl('');
     }
 
     let btnContent = showLoader ? <Loader /> : 'Submit';
@@ -81,7 +84,7 @@ const Header = ({fetchMemesFunc}) => {
         </React.Fragment>) : <p>{message}</p>
         
     
-    console.log(message)
+    // console.log(message)
     return (
         <div>
             <nav className="navbar">
