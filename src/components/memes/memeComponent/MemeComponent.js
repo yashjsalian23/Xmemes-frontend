@@ -24,7 +24,7 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
             caption:editedCaption,
             name:editedName
         };
-        const response = await fetch(`http://localhost:8081/memes/${id}`,{
+        const response = await fetch(`${process.env.REACT_APP_DOMAIN}/memes/${id}`,{
             method:'PATCH',
             body: JSON.stringify(body),
             headers:{
@@ -52,7 +52,7 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
     }
 
     let deleteMemeHandler = async () => {
-        const response = await fetch(`http://localhost:8081/memes/${id}`,{
+        const response = await fetch(`${process.env.REACT_APP_DOMAIN}/memes/${id}`,{
             method: "DELETE"
         });
 

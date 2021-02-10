@@ -25,7 +25,7 @@ const Header = ({fetchMemesFunc}) => {
             caption
         };
 
-        let response = await fetch('http://localhost:8081/memes',{
+        let response = await fetch(`${process.env.REACT_APP_DOMAIN}/memes`,{
             method: 'POST',
             body: JSON.stringify(body),
             headers:{

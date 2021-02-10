@@ -14,7 +14,7 @@ const index = () => {
     }, []);
 
     let fetchMemes = async () => {
-        const response = await fetch('http://localhost:8081/memes',{
+        const response = await fetch(`${process.env.REACT_APP_DOMAIN}/memes`,{
             method: 'get'
         });
 
