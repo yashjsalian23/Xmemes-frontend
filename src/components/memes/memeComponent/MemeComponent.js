@@ -9,7 +9,7 @@ import './MemeComponent.css';
 const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
 
     let [ editedUrl, setEditedUrl ] = useState(url);
-    let [ editedName, setEditedName ] = useState(name);
+    // let [ editedName, setEditedName ] = useState(name);
     let [ editedCaption, setEditedCaption ] = useState(caption);
     let [ showModal, setShowModal ] = useState(false);
     let [ showForm, setShowForm ] = useState(true);
@@ -22,7 +22,7 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
         let body ={
             url:editedUrl,
             caption:editedCaption,
-            name:editedName
+            // name:editedName
         };
         const response = await fetch(`${process.env.REACT_APP_DOMAIN}/memes/${id}`,{
             method:'PATCH',
@@ -73,11 +73,11 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
             onChange={(e) => setEditedCaption(e.target.value)}
             placeholder="Caption"/> <br/>
 
-            <input type="text"
+            {/* <input type="text"
             required
             value={editedName}
             onChange={(e) => setEditedName(e.target.value)}
-            placeholder="Name"/> <br/>
+            placeholder="Name"/> <br/> */}
 
             <input type="text"
             required
