@@ -18,7 +18,9 @@ const Header = ({fetchMemesFunc}) => {
 
     let newMemeHandler = async (event) => {
         setShowLoader(true);
+
         event.preventDefault();
+
         let body = {
             url,
             name,
@@ -34,29 +36,33 @@ const Header = ({fetchMemesFunc}) => {
         });
 
         let res = await response.json();
+
         setShowLoader(false);
+
         if(res.id){
             setShowForm(false);
             setMessage('Meme Posted Successfully!');
             fetchMemesFunc();
-            await setTimeout(() => {
+            await setTimeout(() => { //adding a timeout so that user can read the message and then modal closes
                 setShowModal(false);
                 setShowForm(true);
             }, 2500);
         } else {
             setMessage('Unable to post Meme');
-            await setTimeout(() => {
+            await setTimeout(() => { //adding a timeout so that user can read the message and then modal closes
                 setShowModal(false);
                 setShowForm(true);
             }, 2500);
         }
+        // resetting input fields so that when modal is opened again the previous data is removed
         setCaption('');
         setName('');
         setUrl('');
     }
 
-    let btnContent = showLoader ? <Loader /> : 'Submit';
+    let btnContent = showLoader ? <Loader /> : 'Submit'; // show loader if there is a request in process or else show text
 
+    // content of modal. If a request is made the show the appropiate message instead of form
     let form = showForm ?  (<React.Fragment>
         <form onSubmit={newMemeHandler}>
             <input type="text"
@@ -84,12 +90,11 @@ const Header = ({fetchMemesFunc}) => {
         </form>
         </React.Fragment>) : <p>{message}</p>
         
-    
-    // console.log(message)
     return (
         <div>
             <nav className="navbar">
-                <span className="navbar-brand mb-0 h1"><a href="/">Xmemes</a></span>
+                {/* brand name */}
+                <span className="navbar-brand mb-0 h1"><a href="/">Xmemes</a></span> 
                 <span>
                     <Button className="mr-sm-2" clicked={() => setShowModal(true)}>New Meme</Button>
                 </span>

@@ -9,10 +9,12 @@ const index = () => {
 
     let [ memeArray, setMemeArray ] = useState([]);
 
+    // fetch all memes once page is loaded
     useEffect(async () => {
         fetchMemes();
     }, []);
 
+    // method to fetch memes and get the response
     let fetchMemes = async () => {
         const response = await fetch(`${process.env.REACT_APP_DOMAIN}/memes`,{
             method: 'get'

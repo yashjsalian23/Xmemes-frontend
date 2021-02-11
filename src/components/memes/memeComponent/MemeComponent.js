@@ -9,7 +9,6 @@ import './MemeComponent.css';
 const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
 
     let [ editedUrl, setEditedUrl ] = useState(url);
-    // let [ editedName, setEditedName ] = useState(name);
     let [ editedCaption, setEditedCaption ] = useState(caption);
     let [ showModal, setShowModal ] = useState(false);
     let [ showForm, setShowForm ] = useState(true);
@@ -18,12 +17,13 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
 
     let editMemeHandler = async (event) => {
         event.preventDefault();
+
         setShowLoader(true);
         let body ={
             url:editedUrl,
-            caption:editedCaption,
-            // name:editedName
+            caption:editedCaption
         };
+
         const response = await fetch(`${process.env.REACT_APP_DOMAIN}/memes/${id}`,{
             method:'PATCH',
             body: JSON.stringify(body),
@@ -31,11 +31,9 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
                 'Content-Type': 'application/json'
             }
         });
-        // console.log(response.status);
-
-        // const res = await response.json();
         
         setShowLoader(false);
+
         if(response.status === 200){
             setShowForm(false);
             setMessage('Meme Edited Successfully!');
@@ -58,15 +56,15 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
             method: "DELETE"
         });
 
-        // const res = await response.json();
         if(response.status === 200){
             fetchMemesFunc();
         }
     }
 
+    // show loader if there is a request in process or else show tex
     let btnContent = showLoader ? <Loader /> : 'Submit';
 
-
+    // content of modal. If a request is made the show the appropiate message instead of form
     let editForm = showForm ? (<React.Fragment>
         <form onSubmit={editMemeHandler}>
             <input type="text"
@@ -75,12 +73,6 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
             autoFocus
             onChange={(e) => setEditedCaption(e.target.value)}
             placeholder="Caption"/> <br/>
-
-            {/* <input type="text"
-            required
-            value={editedName}
-            onChange={(e) => setEditedName(e.target.value)}
-            placeholder="Name"/> <br/> */}
 
             <input type="text"
             required
