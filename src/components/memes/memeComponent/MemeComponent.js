@@ -30,11 +30,13 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
             headers:{
                 'Content-Type': 'application/json'
             }
-        })
+        });
+        // console.log(response.status);
 
-        const res = await response.json();
+        // const res = await response.json();
+        
         setShowLoader(false);
-        if(res.success){
+        if(response.status === 200){
             setShowForm(false);
             setMessage('Meme Edited Successfully!');
             fetchMemesFunc();
@@ -56,8 +58,8 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
             method: "DELETE"
         });
 
-        const res = await response.json();
-        if(res.success){
+        // const res = await response.json();
+        if(response.status === 200){
             fetchMemesFunc();
         }
     }
@@ -70,6 +72,7 @@ const MemeComponent = ({name, url, caption, id, fetchMemesFunc}) => {
             <input type="text"
             required
             value={editedCaption}
+            autoFocus
             onChange={(e) => setEditedCaption(e.target.value)}
             placeholder="Caption"/> <br/>
 

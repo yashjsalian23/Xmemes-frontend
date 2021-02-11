@@ -63,6 +63,7 @@ const Header = ({fetchMemesFunc}) => {
             required
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
+            autofocus
             placeholder="Caption"/> <br/>
 
             <input type="text"
