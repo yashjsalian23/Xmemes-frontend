@@ -43,17 +43,17 @@ const Header = ({fetchMemesFunc}) => {
             setShowForm(false);
             setMessage('Meme Posted Successfully!');
             fetchMemesFunc();
-            await setTimeout(() => { //adding a timeout so that user can read the message and then modal closes
-                setShowModal(false);
-                setShowForm(true);
-            }, 2500);
+        } else if(response.status === 409){
+            setShowForm(false);
+            setMessage('Meme exists');
         } else {
+            setShowForm(false);
             setMessage('Unable to post Meme');
-            await setTimeout(() => { //adding a timeout so that user can read the message and then modal closes
-                setShowModal(false);
-                setShowForm(true);
-            }, 2500);
         }
+        await setTimeout(() => { //adding a timeout so that user can read the message and then modal closes
+            setShowModal(false);
+            setShowForm(true);
+        }, 2500);
         // resetting input fields so that when modal is opened again the previous data is removed
         setCaption('');
         setName('');
